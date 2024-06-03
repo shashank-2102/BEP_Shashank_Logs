@@ -6,7 +6,7 @@ import numpy as np
 
 # slecting representative samples
 def generate_logs(df, tfidf_matrix, mean_shift, labels, num_representative=3):
-    representative_logs = {}
+    representative_logs = []
     for cluster in np.unique(labels):
         cluster_points = df[df['cluster'] == cluster]
         cluster_center = mean_shift.cluster_centers_[cluster]
@@ -20,10 +20,8 @@ def generate_logs(df, tfidf_matrix, mean_shift, labels, num_representative=3):
         for idx in selected_indices:
             log = cluster_points.iloc[idx]['Log']
             template = cluster_points.iloc[idx]['LogTemplate']
-            if template not in representative_logs:
-                representative_logs[template] = ''
-            representative_logs[template] += log + '\n'  
-
+            representative_logs.append([template, log])
+            
     return representative_logs
 
 
@@ -43,3 +41,5 @@ def get_representative_logs(input_path, num_representative=3):
 
     logs = generate_logs(df, tfidf_matrix, mean_shift, labels, num_representative)
     return logs
+
+#most imp at the end
