@@ -5,7 +5,7 @@ import numpy as np
 
 
 # slecting representative samples
-def generate_logs(df, tfidf_matrix, mean_shift, labels, num_representative=3):
+def generate_logs(df, tfidf_matrix, mean_shift, labels, num_representative=5):
     representative_logs = []
     for cluster in np.unique(labels):
         cluster_points = df[df['cluster'] == cluster]
@@ -25,7 +25,7 @@ def generate_logs(df, tfidf_matrix, mean_shift, labels, num_representative=3):
     return representative_logs
 
 
-def get_representative_logs(input_path, num_representative=3):
+def get_representative_logs(input_path, num_representative=5):
     # TF-IDF
     df = pd.read_csv(input_path)
     vectorizer = TfidfVectorizer()
