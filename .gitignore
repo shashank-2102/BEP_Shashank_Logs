@@ -160,3 +160,8 @@ cython_debug/
 #.idea/
 
 api_key.py
+
+/data
+
+*.csv
+temp.ipynb
